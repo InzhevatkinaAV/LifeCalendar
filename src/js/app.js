@@ -1,15 +1,14 @@
+import { addNewEmptyCard } from "./cards.js";
+document.addEventListener("submit", function (e) {
+    e.preventDefault();
+});
 const btnStart = document.querySelector(".button_start");
 ;
-const startScreenSection = document.querySelector(".start_screen");
 const achivementsSection = document.querySelector(".achievements");
 const resultSection = document.querySelector(".result");
 const buttonSaveCalendar = document.querySelector(".button_save_calendar");
 const inputBirthday = document.querySelector(".input_birthday");
-const formBirthday = document.querySelector(".form_birthday");
 let birthday;
-formBirthday.addEventListener('submit', function (e) {
-    e.preventDefault();
-});
 btnStart.addEventListener("click", function (event) {
     birthday = inputBirthday.value;
     if (birthday) {
@@ -24,4 +23,11 @@ btnStart.addEventListener("click", function (event) {
         btnStart.style.background = "#D9D9D9";
         achivementsSection.scrollIntoView({ behavior: "smooth" });
     }
+});
+const buttonAddNewCard = document.querySelector(".button_add_new_card");
+buttonAddNewCard.addEventListener("click", function (e) {
+    addNewEmptyCard();
+});
+const buttonDeleteCard = document.querySelector(".button_delete_card");
+buttonDeleteCard.addEventListener("click", function (e) {
 });

@@ -1,22 +1,19 @@
-//Импорт скрипта работы с событиями events
-//Импорт скрипта работы с канвасом calendar
+import { addNewEmptyCard } from "./cards.js";
+
+document.addEventListener("submit", function(e) {
+	e.preventDefault();
+});
 
 //------------------------------------Логика стартовой страницы-----------------------------------------
 const btnStart = document.querySelector(".button_start") as HTMLButtonElement | null;;
 
-const startScreenSection = document.querySelector(".start_screen");
 const achivementsSection = document.querySelector(".achievements") as HTMLElement | null;
 const resultSection = document.querySelector(".result")  as HTMLElement | null;
 const buttonSaveCalendar = document.querySelector(".button_save_calendar") as HTMLButtonElement | null;
 
 const inputBirthday = document.querySelector(".input_birthday") as HTMLInputElement | null;
-const formBirthday = document.querySelector(".form_birthday");
 
 let birthday : String;
-
-formBirthday.addEventListener('submit', function(e) {
-	e.preventDefault();
-});
 
 btnStart.addEventListener("click", function(event) {
 	birthday = inputBirthday.value;
@@ -44,30 +41,18 @@ btnStart.addEventListener("click", function(event) {
 });
 //------------------------------------------------------------------------------------------------------
 
-
 //---------------------------------------Карточки-события-----------------------------------------------
-//Массив из элементов типа Events
+const buttonAddNewCard = document.querySelector(".button_add_new_card");
 
-//Добавление новой карточки
-// let btnNewCardAdd = document.querySelector("#btn_card-add");
+buttonAddNewCard.addEventListener("click", function(e) {
+	addNewEmptyCard();
+}); 
 
-// btnNewCardAdd.addEventListener("click", function(event) {
+const buttonDeleteCard = document.querySelector(".button_delete_card");
 
-// });
+buttonDeleteCard.addEventListener("click", function(e) {
 
-//Подтверждение карточки, добавление ее в календарь (отрисовка на канвасе в 2х местах)
-// let btnCardAddOnCalendar = document.querySelector("#btn_card-add-on-calendar");
-
-// btnCardAddOnCalendar.addEventListener("click", function(event) {
-
-// });
-
-//Удаление карточки
-// let btnCardRemove = document.querySelector("#btn_card-remove");
-
-// btnCardRemove.addEventListener("click", function(event) {
-
-// });
+})
 //------------------------------------------------------------------------------------------------------
 
 

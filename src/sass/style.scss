@@ -96,10 +96,6 @@ button {
 			background:#ececec;
 			border-radius: 15px;
 			box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
-			transition: 1s all;
-			&:hover {
-				background:#fcfae6;
-			}
 			.form__wrapper {
 				display: flex;
 				flex-direction: column;
@@ -176,7 +172,7 @@ button {
 				}
 			}
 		}
-		.add_new_card {
+		.button_add_new_card {
 			width: 400px;
 			height: 200px;
 			background:#ececec;
