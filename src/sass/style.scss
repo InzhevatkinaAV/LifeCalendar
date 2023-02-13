@@ -1,0 +1,250 @@
+@import 'libs/bootstrap-reboot.min';
+
+.container {
+	width: 1240px;
+	margin: 0 auto;
+	padding-top: 25px;
+	min-height: calc(100vh - 50px - 140px);
+}
+
+header {
+	height: 50px;
+	background-color: rgb(216, 255, 203);
+}
+
+h2 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 20px;
+}
+
+p {
+	font-size: 14px;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+
+button {
+	font-family: 'Marmelad', sans-serif;
+	color: rgb(4, 14, 0);
+	background-color: #ffffff;
+	font-size: 25px;
+	border: none;
+	&:focus {
+		outline: none;
+	}
+}
+
+.start_screen {
+	.about__wrapper {
+		margin-bottom: 60px;
+		h1 {
+			font-family: 'Marmelad', sans-serif;
+			color: rgb(4, 14, 0);
+			font-size: 50px;
+		}
+		p {
+			font-size: 20px;
+		}
+	}
+	.birthday__wrapper {
+		margin-bottom: 60px;
+		.form_birthday {
+			.input_birthday {
+				padding: 5px;
+				height: 33px;
+				font-size: 14px;
+				border: 1px solid #000000;
+				border-radius: 11px;
+				border-color: #bdbdbd;
+			}
+		}
+	}
+	.button_start {
+		display: block;
+		margin: 0 auto;
+		width: 400px;
+		height: 100px;
+		border-radius: 30px;
+		background-color: #dafade;
+		transition: all 0.5s;
+		&:hover {
+			background-color: #b3ebbb;
+			letter-spacing: 0.045em;
+		}
+	}
+	.button_start_confirmed {
+		display: block;
+		margin: 0 auto;
+		width: 400px;
+		height: 100px;
+		border-radius: 30px;
+		background-color: #b3ebbb;
+		letter-spacing: 0.045em;
+	}
+}
+
+.achievements {
+	.cards__wrapper {
+		display: grid;
+		grid-template-columns: repeat(3, 400px);
+		gap: 20px;
+		grid-auto-rows: 200px;
+		.card {
+			width: 400px;
+			height: 200px;
+			background:#ececec;
+			border-radius: 15px;
+			box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
+			transition: 1s all;
+			&:hover {
+				background:#fcfae6;
+			}
+			.form__wrapper {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				.form_title {
+					.input_title {
+						padding: 5px;
+						font-size: 14px;
+						width: 360px;
+						height: 33px;
+						margin-top: 25px;
+						border: 1px solid #000000;
+						border-radius: 11px;
+						border-color: #bdbdbd;
+					}
+				}
+				.color_and_month_wrapper {
+					display: flex;
+					justify-content: center;
+					align-items: space-around;
+					.form_color {
+						.input_color {
+							width: 33px;
+							height: 35px;
+							margin: 20px 15px 30px 15px;
+							border-width: 0;
+							background-color:#ececec;
+							cursor: pointer;
+							border-radius: 6px;
+							border-color: #bdbdbd;
+						}
+					}
+					.form_month{	
+						.input_month {
+							padding: 5px;
+							font-size: 14px;
+							width: 156px;
+							height: 33px;
+							margin: 20px 15px 30px 15px;
+							border: 1px solid #000000;
+							border-radius: 11px;
+							border-color: #bdbdbd;
+						}
+					}
+				}
+			}
+			.button_save-delete__wrapper {
+				display: flex;
+				justify-content: center;
+				align-items: space-around;
+				.button_delete_card {
+					width: 120px;
+					height: 33px;
+					margin: 0 10px;
+					font-size: 14px;
+					border-radius: 11px;
+					background-color: #ffd4d4;
+					transition: 1s all;
+					&:hover {
+						background-color: #ffbfbf;
+					}
+				}
+				.button_save_card {
+					width: 120px;
+					height: 33px;
+					margin: 0 10px;
+					font-size: 14px;
+					border-radius: 11px;
+					background-color: #c2f7c0;
+					transition: 1s all;
+					&:hover {
+						background-color: #acf4a9;
+					}
+				}
+			}
+		}
+		.add_new_card {
+			width: 400px;
+			height: 200px;
+			background:#ececec;
+			border-radius: 15px;
+			box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
+			transition: 1s all;
+			&:hover {
+				background:#dafade;
+			}
+		}
+	}
+}
+
+.result {
+	margin: 0;
+	padding: 0;
+	margin-top: 40px;
+	width: 1100px;
+	background-color:rgb(255, 255, 255);
+	.result__wrapper {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 60px 30px 20px 60px;
+		.calendar {
+			margin: 0;
+			padding: 0;
+			display: grid;
+			grid-template-columns: repeat(11, 20px) 25px repeat(12, 20px);
+			row-gap: 5px;
+			width: 485px;
+			div {
+				width: 15px;
+				height: 15px;
+				background: #FFFFFF;
+				border: 0.3px solid #000000;
+				border-radius: 10px;
+
+			}
+			.past {
+				background: #cffbd8;
+			}
+		}
+		.designation__wrapper {
+			display: block;
+			width: 485px;
+			height: 695px;
+			border: 0.3px solid #000000;
+		}
+	}
+}
+
+.button_save_calendar {
+	display: block;
+	width: 505px;
+	height: 60px;
+	background: #C9ECAD;
+	border-radius: 20px;
+	margin: 0 auto;
+	margin-top: 40px;
+	margin-bottom: 35px;
+}
+
+footer {
+	height: 140px;
+	background-color: rgb(216, 255, 203);
+}
+
+.invisible {
+	display: none;
+}
