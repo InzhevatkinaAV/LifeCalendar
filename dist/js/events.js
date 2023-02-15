@@ -1,4 +1,4 @@
-class Events {
+export class Events {
     constructor(name, month, year, color) {
         this.name = name;
         this.month = month;
@@ -16,13 +16,7 @@ class Events {
         this.month = month;
         this.year = year;
     }
-    confirmConfirm() {
-        this.confirm = true;
-    }
-    addOnCalendar() {
-        let canvas = document.querySelector('#canvas');
-    }
-    addDescription() {
-        let canvas = document.querySelector('#canvas');
+    setConfirm(state) {
+        this.confirm = state;
     }
 }

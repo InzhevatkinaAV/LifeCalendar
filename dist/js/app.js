@@ -1,4 +1,4 @@
-import { addNewEmptyCard } from "./cards.js";
+import { editFirstCard, addNewEmptyCard } from "./cards.js";
 document.addEventListener("submit", function (e) {
     e.preventDefault();
 });
@@ -12,6 +12,7 @@ let birthday;
 btnStart.addEventListener("click", function (event) {
     birthday = inputBirthday.value;
     if (birthday) {
+        editFirstCard(birthday);
         achivementsSection.classList.remove("invisible");
         resultSection.classList.remove("invisible");
         buttonSaveCalendar.classList.remove("invisible");
@@ -26,8 +27,5 @@ btnStart.addEventListener("click", function (event) {
 });
 const buttonAddNewCard = document.querySelector(".button_add_new_card");
 buttonAddNewCard.addEventListener("click", function (e) {
-    addNewEmptyCard();
-});
-const buttonDeleteCard = document.querySelector(".button_delete_card");
-buttonDeleteCard.addEventListener("click", function (e) {
+    addNewEmptyCard(birthday);
 });
