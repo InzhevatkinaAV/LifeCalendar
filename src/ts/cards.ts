@@ -1,5 +1,5 @@
 import { Event } from "./event.js";
-import { addEventOnCalendar, addEventOnDescription } from "./calendar.js";
+import { addEventOnCalendar } from "./calendar.js";
 
 const card = document.querySelector(".card");
 const buttonAddNewCard = document.querySelector(".button_add_new_card");
@@ -8,11 +8,14 @@ let eventsList = new Map<string, Event>();
 
 export function editFirstCard(birthday : string) {
 	let firstCardInputDate = document.querySelector(".input_month") as HTMLInputElement;
-	let monthMax = String(new Date(birthday).getMonth());
+	let monthMax = String(new Date(birthday).getMonth() + 1);
 	monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
 
-	firstCardInputDate.max = String(new Date(birthday).getFullYear() + 75) + "-" + monthMax;
+	firstCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
+	
 	firstCardInputDate.min = birthday;
+
+	console.log("1: " + firstCardInputDate.max + " " + firstCardInputDate.min);
 }
 
 export function addNewEmptyCard(birthday : string) {
@@ -38,10 +41,12 @@ export function addNewEmptyCard(birthday : string) {
 	let newCardInputDate = newCard.querySelector(".input_month") as HTMLInputElement;
 	newCardInputDate.disabled = false;
 	newCardInputDate.value = null;
-	let monthMax = String(new Date(birthday).getMonth());
+
+	let monthMax = String(new Date(birthday).getMonth() + 1);
 	monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
-	newCardInputDate.max = String(new Date(birthday).getFullYear() + 75) + "-" + monthMax;
+	newCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
 	newCardInputDate.min = birthday;
+	console.log("2: " + newCardInputDate.max + " " + newCardInputDate.min);
 
 	let newCardInputColor = newCard.querySelector(".input_color") as HTMLInputElement;
 	newCardInputColor.disabled = false;
@@ -106,9 +111,6 @@ function saveCard(card : HTMLElement) {
 
 			//Добавить на календарь событие
 			addEventOnCalendar(newEvent);
-
-			//Поместить описание событие в пометки справа к календарю
-			addEventOnDescription(newEvent);
 
 		} else {
 			alert("Эта дата уже занята");

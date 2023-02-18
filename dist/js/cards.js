@@ -1,14 +1,15 @@
 import { Event } from "./event.js";
-import { addEventOnCalendar, addEventOnDescription } from "./calendar.js";
+import { addEventOnCalendar } from "./calendar.js";
 const card = document.querySelector(".card");
 const buttonAddNewCard = document.querySelector(".button_add_new_card");
 let eventsList = new Map();
 export function editFirstCard(birthday) {
     let firstCardInputDate = document.querySelector(".input_month");
-    let monthMax = String(new Date(birthday).getMonth());
+    let monthMax = String(new Date(birthday).getMonth() + 1);
     monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
-    firstCardInputDate.max = String(new Date(birthday).getFullYear() + 75) + "-" + monthMax;
+    firstCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
     firstCardInputDate.min = birthday;
+    console.log("1: " + firstCardInputDate.max + " " + firstCardInputDate.min);
 }
 export function addNewEmptyCard(birthday) {
     let newCard = card.cloneNode(true);
@@ -29,10 +30,11 @@ export function addNewEmptyCard(birthday) {
     let newCardInputDate = newCard.querySelector(".input_month");
     newCardInputDate.disabled = false;
     newCardInputDate.value = null;
-    let monthMax = String(new Date(birthday).getMonth());
+    let monthMax = String(new Date(birthday).getMonth() + 1);
     monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
-    newCardInputDate.max = String(new Date(birthday).getFullYear() + 75) + "-" + monthMax;
+    newCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
     newCardInputDate.min = birthday;
+    console.log("2: " + newCardInputDate.max + " " + newCardInputDate.min);
     let newCardInputColor = newCard.querySelector(".input_color");
     newCardInputColor.disabled = false;
     newCardInputColor.style.cursor = "pointer";
@@ -84,7 +86,6 @@ function saveCard(card) {
             inputColor.style.cursor = "default";
             btnSave.remove();
             addEventOnCalendar(newEvent);
-            addEventOnDescription(newEvent);
         }
         else {
             alert("Эта дата уже занята");

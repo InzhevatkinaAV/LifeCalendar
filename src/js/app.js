@@ -1,5 +1,5 @@
 import { editFirstCard, addNewEmptyCard } from "./cards.js";
-import { addAgeOnTheLeft, addMonthOnTheTop } from './calendar.js';
+import { addAgeOnTheLeft, addMonthOnTheTop, addPastOnCalendar } from './calendar.js';
 document.addEventListener("submit", function (e) {
     e.preventDefault();
 });
@@ -31,6 +31,7 @@ btnStart.addEventListener("click", function (event) {
         achivementsSection.scrollIntoView({ behavior: "smooth" });
         addAgeOnTheLeft();
         addMonthOnTheTop(birthday);
+        addPastOnCalendar(birthday, currentDate);
     }
     else {
         inputBirthday.style.borderColor = "#ff0000";

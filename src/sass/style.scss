@@ -214,16 +214,16 @@ button {
 	background-color:rgb(255, 255, 255);
 	.result__wrapper {
 		display: flex;
-		align-items: center;
+		align-items: end;
 		justify-content: space-between;
-		padding: 20px 30px 20px 60px;
+		padding: 20px 30px 20px 30px;
 		.calendar {
 			margin: 0;
 			padding: 0;
 			display: grid;
 			grid-template-columns: 17px repeat(11, 20px) 25px repeat(12, 20px);
 			row-gap: 5px;
-			width: 485px;
+			width: 500px;
 			div {
 				width: 15px;
 				height: 15px;
@@ -285,4 +285,12 @@ footer {
 	text-align: center;
 	text-orientation: upright;
 	writing-mode: vertical-lr; 
+}
+
+.past {
+	width: 15px;
+		height: 15px;
+		background: #b8ffcb;
+		border: 0.3px solid #000000;
+		border-radius: 10px;
 }

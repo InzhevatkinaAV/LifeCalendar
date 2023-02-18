@@ -1,5 +1,5 @@
 import { editFirstCard, addNewEmptyCard } from "./cards.js";
-import { addAgeOnTheLeft, addMonthOnTheTop } from './calendar.js';
+import { addAgeOnTheLeft, addMonthOnTheTop, addPastOnCalendar } from './calendar.js';
 
 document.addEventListener("submit", function(e) {
 	e.preventDefault();
@@ -48,7 +48,9 @@ btnStart.addEventListener("click", function(event) {
 		//Подписывание месяцев и возраста в calendar
 		addAgeOnTheLeft();
 		addMonthOnTheTop(birthday);
+
 		//Отрисовка прошлого в calendar
+		addPastOnCalendar(birthday, currentDate);
 	} else {
 		inputBirthday.style.borderColor = "#ff0000";
 		inputBirthday.style.background = "#ffe5e5";
