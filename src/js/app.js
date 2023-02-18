@@ -1,4 +1,5 @@
 import { editFirstCard, addNewEmptyCard } from "./cards.js";
+import { addAgeOnTheLeft, addMonthOnTheTop } from './calendar.js';
 document.addEventListener("submit", function (e) {
     e.preventDefault();
 });
@@ -9,6 +10,11 @@ const resultSection = document.querySelector(".result");
 const buttonSaveCalendar = document.querySelector(".button_save_calendar");
 const inputBirthday = document.querySelector(".input_birthday");
 let birthday;
+const currentDate = new Date();
+let monthMaxMin = String(currentDate.getMonth() + 1);
+monthMaxMin = monthMaxMin.length === 1 ? "0" + monthMaxMin : monthMaxMin;
+inputBirthday.max = String(currentDate.getFullYear() - 5) + "-" + monthMaxMin;
+inputBirthday.min = String(currentDate.getFullYear() - 74) + "-" + monthMaxMin;
 btnStart.addEventListener("click", function (event) {
     birthday = inputBirthday.value;
     if (birthday && birthday <= inputBirthday.max && birthday >= inputBirthday.min) {
@@ -23,6 +29,13 @@ btnStart.addEventListener("click", function (event) {
         btnStart.style.transition = "1s all";
         btnStart.style.background = "#D9D9D9";
         achivementsSection.scrollIntoView({ behavior: "smooth" });
+        addAgeOnTheLeft();
+        addMonthOnTheTop(birthday);
+    }
+    else {
+        inputBirthday.style.borderColor = "#ff0000";
+        inputBirthday.style.background = "#ffe5e5";
+        setTimeout(() => { inputBirthday.style.borderColor = "#bdbdbd"; inputBirthday.style.background = "#ffffff"; }, 1000);
     }
 });
 const buttonAddNewCard = document.querySelector(".button_add_new_card");

@@ -1,4 +1,5 @@
 import { Event } from "./event.js";
+import { addEventOnCalendar, addEventOnDescription } from "./calendar.js";
 const card = document.querySelector(".card");
 const buttonAddNewCard = document.querySelector(".button_add_new_card");
 let eventsList = new Map();
@@ -82,6 +83,8 @@ function saveCard(card) {
             inputColor.disabled = true;
             inputColor.style.cursor = "default";
             btnSave.remove();
+            addEventOnCalendar(newEvent);
+            addEventOnDescription(newEvent);
         }
         else {
             alert("Эта дата уже занята");

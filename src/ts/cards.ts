@@ -1,4 +1,5 @@
 import { Event } from "./event.js";
+import { addEventOnCalendar, addEventOnDescription } from "./calendar.js";
 
 const card = document.querySelector(".card");
 const buttonAddNewCard = document.querySelector(".button_add_new_card");
@@ -102,6 +103,13 @@ function saveCard(card : HTMLElement) {
 			inputColor.disabled = true;
 			inputColor.style.cursor = "default";
 			btnSave.remove();
+
+			//Добавить на календарь событие
+			addEventOnCalendar(newEvent);
+
+			//Поместить описание событие в пометки справа к календарю
+			addEventOnDescription(newEvent);
+
 		} else {
 			alert("Эта дата уже занята");
 		}
