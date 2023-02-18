@@ -19,7 +19,7 @@ btnStart.addEventListener("click", function(event) {
 	birthday = inputBirthday.value;
 
 	//Если дата дня рождения введена, то показываем секции работы с календарем
-	if (birthday) {
+	if (birthday && birthday <= inputBirthday.max &&  birthday >= inputBirthday.min) {
 		editFirstCard(birthday);
 
 		achivementsSection.classList.remove("invisible");

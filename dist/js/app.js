@@ -11,7 +11,7 @@ const inputBirthday = document.querySelector(".input_birthday");
 let birthday;
 btnStart.addEventListener("click", function (event) {
     birthday = inputBirthday.value;
-    if (birthday) {
+    if (birthday && birthday <= inputBirthday.max && birthday >= inputBirthday.min) {
         editFirstCard(birthday);
         achivementsSection.classList.remove("invisible");
         resultSection.classList.remove("invisible");
