@@ -1,4 +1,3 @@
-import { drawEventOnCalendar, drawEventDescription } from "./canvas.js";
 import { Event } from "./event.js";
 
 const calendarMonth = document.querySelector(".calendar");

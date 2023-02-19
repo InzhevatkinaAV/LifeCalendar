@@ -10,7 +10,6 @@ const btnStart = document.querySelector(".button_start") as HTMLButtonElement | 
 
 const achivementsSection = document.querySelector(".achievements") as HTMLElement | null;
 const resultSection = document.querySelector(".result")  as HTMLElement | null;
-const buttonSaveCalendar = document.querySelector(".button_save_calendar") as HTMLButtonElement | null;
 
 const inputBirthday = document.querySelector(".input_birthday") as HTMLInputElement | null;
 
@@ -32,7 +31,6 @@ btnStart.addEventListener("click", function(event) {
 
 		achivementsSection.classList.remove("invisible");
 		resultSection.classList.remove("invisible");
-		buttonSaveCalendar.classList.remove("invisible");
 
 		//И блокируем кнопку и input, чтобы нельзя было в процессе редактирования календаря менять дату рождения
 		inputBirthday.disabled = true;

@@ -7,7 +7,6 @@ const btnStart = document.querySelector(".button_start");
 ;
 const achivementsSection = document.querySelector(".achievements");
 const resultSection = document.querySelector(".result");
-const buttonSaveCalendar = document.querySelector(".button_save_calendar");
 const inputBirthday = document.querySelector(".input_birthday");
 let birthday;
 const currentDate = new Date();
@@ -21,7 +20,6 @@ btnStart.addEventListener("click", function (event) {
         editFirstCard(birthday);
         achivementsSection.classList.remove("invisible");
         resultSection.classList.remove("invisible");
-        buttonSaveCalendar.classList.remove("invisible");
         inputBirthday.disabled = true;
         btnStart.classList.add("button_start_confirmed");
         btnStart.classList.remove("button_start");
