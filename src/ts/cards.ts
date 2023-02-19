@@ -1,5 +1,5 @@
 import { Event } from "./event.js";
-import { addEventOnCalendar } from "./calendar.js";
+import { addEventOnCalendar, deleteEventFromCalendar } from "./calendar.js";
 
 const card = document.querySelector(".card");
 const buttonAddNewCard = document.querySelector(".button_add_new_card");
@@ -14,8 +14,6 @@ export function editFirstCard(birthday : string) {
 	firstCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
 	
 	firstCardInputDate.min = birthday;
-
-	console.log("1: " + firstCardInputDate.max + " " + firstCardInputDate.min);
 }
 
 export function addNewEmptyCard(birthday : string) {
@@ -24,7 +22,6 @@ export function addNewEmptyCard(birthday : string) {
 	newCard.classList.remove("card_confirmed");
 	newCard.style.background = "#ececec";
 
-	console.log(newCard.querySelector(".button_save_card"));
 	if (!newCard.querySelector(".button_save_card")) {
 		let btnWrapper = newCard.querySelector(".button_save-delete__wrapper") as HTMLElement;
 		let btnSave = document.createElement("button");
@@ -36,7 +33,7 @@ export function addNewEmptyCard(birthday : string) {
 	let newCardInputTitle = newCard.querySelector(".input_title") as HTMLInputElement;
 	newCardInputTitle.disabled = false;
 	newCardInputTitle.value = "";
-	newCardInputTitle.placeholder = "Еще одно воспоминание...";
+	newCardInputTitle.placeholder = "Еще одно воспоминание...или план?";
 
 	let newCardInputDate = newCard.querySelector(".input_month") as HTMLInputElement;
 	newCardInputDate.disabled = false;
@@ -46,7 +43,6 @@ export function addNewEmptyCard(birthday : string) {
 	monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
 	newCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
 	newCardInputDate.min = birthday;
-	console.log("2: " + newCardInputDate.max + " " + newCardInputDate.min);
 
 	let newCardInputColor = newCard.querySelector(".input_color") as HTMLInputElement;
 	newCardInputColor.disabled = false;
@@ -85,6 +81,7 @@ function isElement(className : string) {
 function deleteCard(card : HTMLElement) {
 	if (card.classList.contains("card_confirmed")) {
 		let inputData = card.querySelector(".input_month") as HTMLInputElement;
+		deleteEventFromCalendar(eventsList.get(inputData.value));
 		eventsList.delete(inputData.value);
 	}
     card.remove();

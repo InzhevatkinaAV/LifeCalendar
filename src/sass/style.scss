@@ -237,10 +237,29 @@ button {
 			}
 		}
 		.designation__wrapper {
+			padding: 10px;
 			display: block;
 			width: 485px;
 			height: 735px;
 			border: 0.3px solid #000000;
+			.designation {
+				margin: 0 0 5px 0;
+				display: flex;
+				justify-content: flex-start;
+				align-items: flex-start;
+				.designation_color {
+					margin: 0 10px 0 0;
+					width: 15px;
+					height: 15px;
+					background: #FFFFFF;
+					border: 0.3px solid #000000;
+					border-radius: 10px;
+				}
+				.designation_description {
+					margin: 0;
+					font-size: 10px;
+				}
+			}
 		}
 	}
 }

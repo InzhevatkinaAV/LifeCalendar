@@ -1,5 +1,5 @@
 import { Event } from "./event.js";
-import { addEventOnCalendar } from "./calendar.js";
+import { addEventOnCalendar, deleteEventFromCalendar } from "./calendar.js";
 const card = document.querySelector(".card");
 const buttonAddNewCard = document.querySelector(".button_add_new_card");
 let eventsList = new Map();
@@ -9,13 +9,11 @@ export function editFirstCard(birthday) {
     monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
     firstCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
     firstCardInputDate.min = birthday;
-    console.log("1: " + firstCardInputDate.max + " " + firstCardInputDate.min);
 }
 export function addNewEmptyCard(birthday) {
     let newCard = card.cloneNode(true);
     newCard.classList.remove("card_confirmed");
     newCard.style.background = "#ececec";
-    console.log(newCard.querySelector(".button_save_card"));
     if (!newCard.querySelector(".button_save_card")) {
         let btnWrapper = newCard.querySelector(".button_save-delete__wrapper");
         let btnSave = document.createElement("button");
@@ -26,7 +24,7 @@ export function addNewEmptyCard(birthday) {
     let newCardInputTitle = newCard.querySelector(".input_title");
     newCardInputTitle.disabled = false;
     newCardInputTitle.value = "";
-    newCardInputTitle.placeholder = "Еще одно воспоминание...";
+    newCardInputTitle.placeholder = "Еще одно воспоминание...или план?";
     let newCardInputDate = newCard.querySelector(".input_month");
     newCardInputDate.disabled = false;
     newCardInputDate.value = null;
@@ -34,7 +32,6 @@ export function addNewEmptyCard(birthday) {
     monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
     newCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
     newCardInputDate.min = birthday;
-    console.log("2: " + newCardInputDate.max + " " + newCardInputDate.min);
     let newCardInputColor = newCard.querySelector(".input_color");
     newCardInputColor.disabled = false;
     newCardInputColor.style.cursor = "pointer";
@@ -65,6 +62,7 @@ function isElement(className) {
 function deleteCard(card) {
     if (card.classList.contains("card_confirmed")) {
         let inputData = card.querySelector(".input_month");
+        deleteEventFromCalendar(eventsList.get(inputData.value));
         eventsList.delete(inputData.value);
     }
     card.remove();

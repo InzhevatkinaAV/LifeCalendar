@@ -1,6 +1,6 @@
 export class Event {
 	title : string;
-	data : string;
+	data : string; //перевести в количество месяцев от др
 	color : string;
 	confirm : boolean;
 
