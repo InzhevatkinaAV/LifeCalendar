@@ -2,17 +2,19 @@ import { Event } from "./event.js";
 import { addEventOnCalendar, deleteEventFromCalendar } from "./calendar.js";
 
 const card = document.querySelector(".card");
-const buttonAddNewCard = document.querySelector(".button_add_new_card");
+const buttonAddNewCard = document.querySelector(".button_add_new_card") as HTMLButtonElement;
 
 let eventsList = new Map<string, Event>();
 
 export function editFirstCard(birthday : string) {
 	let firstCardInputDate = document.querySelector(".input_month") as HTMLInputElement;
-	let monthMax = String(new Date(birthday).getMonth() + 1);
+
+	let maxDate = new Date(new Date(birthday).getFullYear() + 74, new Date(birthday).getMonth() - 1);
+
+	let monthMax = String(maxDate.getMonth() + 1);
 	monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
 
-	firstCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
-	
+	firstCardInputDate.max = String(maxDate.getFullYear()) + "-" + monthMax;
 	firstCardInputDate.min = birthday;
 }
 
@@ -50,6 +52,12 @@ export function addNewEmptyCard(birthday : string) {
 	newCardInputColor.value = "#e66465";
 
 	buttonAddNewCard.before(newCard);
+
+	const cards = document.querySelectorAll('.card');
+	let countAllCards = cards.length;
+	console.log(countAllCards);
+
+	if (countAllCards >= 35) buttonAddNewCard.style.display = 'none';
 }
 
 document.addEventListener("click", function(e){
@@ -85,6 +93,8 @@ function deleteCard(card : HTMLElement) {
 		eventsList.delete(inputData.value);
 	}
     card.remove();
+
+	buttonAddNewCard.style.display = '';
 }
 
 function saveCard(card : HTMLElement) {

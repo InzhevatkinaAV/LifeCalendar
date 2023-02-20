@@ -44,8 +44,6 @@ export function addEventOnCalendar(newEvent) {
     }
     if (pos % 25 === 0)
         pos++;
-    if (pos > month.length)
-        pos = month.length - 1;
     month[pos].classList.add(`d${countMonths.toString()}`);
     let eventOnCalendar = document.querySelector(`.d${countMonths.toString()}`);
     eventOnCalendar.style.background = newEvent.color;
