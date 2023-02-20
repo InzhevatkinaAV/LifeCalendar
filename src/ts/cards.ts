@@ -57,7 +57,7 @@ export function addNewEmptyCard(birthday : string) {
 	let countAllCards = cards.length;
 	console.log(countAllCards);
 
-	if (countAllCards >= 35) buttonAddNewCard.style.display = 'none';
+	if (countAllCards >= 33) buttonAddNewCard.style.display = 'none';
 }
 
 document.addEventListener("click", function(e){

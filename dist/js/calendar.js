@@ -1,3 +1,4 @@
+import { Event } from "./event.js";
 const calendarMonth = document.querySelector(".calendar");
 const month = calendarMonth.children;
 let birthdayDate;
@@ -28,9 +29,13 @@ export function addPastOnCalendar(birthday, currentDate) {
         month[pos].classList.add('past');
         pos++;
     }
-    addPastOnDescription();
+    addPastAndFutureOnDescription();
 }
-function addPastOnDescription() {
+function addPastAndFutureOnDescription() {
+    let pastPeriod = new Event("Хорошо знакомое прошлое", new Date().toString(), "#ffffff");
+    addEventOnDescription(pastPeriod, "past_description");
+    let futurePeriod = new Event("Еще не открытое будущее", new Date().toString(), "#e2e2e2");
+    addEventOnDescription(futurePeriod, "future_description");
 }
 export function addEventOnCalendar(newEvent) {
     let newEventDate = new Date(newEvent.data);
@@ -69,9 +74,9 @@ export function deleteEventFromCalendar(newEvent) {
     let countMonths = newEventDate.getMonth() - birthdayDate.getMonth() + countOfYears * 12;
     let eventOnCalendar = document.querySelector(`.d${countMonths.toString()}`);
     if (eventOnCalendar.classList.contains('past'))
-        eventOnCalendar.style.background = "#b8ffcb";
+        eventOnCalendar.style.background = "#ffffff";
     else
-        eventOnCalendar.style.background = "#FFFFFF";
+        eventOnCalendar.style.background = "#e2e2e2";
     eventOnCalendar.classList.remove(`d${countMonths.toString()}`);
     deleteEventFromDescription(countMonths.toString());
 }

@@ -38,11 +38,15 @@ export function addPastOnCalendar(birthday : string, currentDate : Date) {
         pos++;
     }
 
-    addPastOnDescription();
+    addPastAndFutureOnDescription();
 }
 
-function addPastOnDescription() {
-    //Справа от календаря добавить блок со списком событий. Для прошлого - это интервал от даты рождения до текущего месяца НЕ включительно
+function addPastAndFutureOnDescription() {
+    let pastPeriod = new Event("Хорошо знакомое прошлое", new Date().toString(), "#ffffff");
+    addEventOnDescription(pastPeriod, "past_description");
+
+    let futurePeriod = new Event("Еще не открытое будущее", new Date().toString(), "#e2e2e2");
+    addEventOnDescription(futurePeriod, "future_description");
 }
 
 export function addEventOnCalendar(newEvent : Event) {
@@ -97,9 +101,9 @@ export function deleteEventFromCalendar(newEvent : Event) {
 
     let eventOnCalendar = document.querySelector(`.d${countMonths.toString()}`) as HTMLElement;
     if (eventOnCalendar.classList.contains('past'))
-        eventOnCalendar.style.background = "#b8ffcb";
+        eventOnCalendar.style.background = "#ffffff";
     else
-        eventOnCalendar.style.background = "#FFFFFF";
+        eventOnCalendar.style.background = "#e2e2e2";
 
     eventOnCalendar.classList.remove(`d${countMonths.toString()}`);
 
