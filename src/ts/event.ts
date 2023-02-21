@@ -1,35 +1,20 @@
 export class Event {
 	title : string;
-	data : string; //перевести в количество месяцев от др
+	data : string;
 	color : string;
-	confirm : boolean;
 
 	constructor(title : string, data : string, color : string) {
 		this.title = title;
 		this.data = data;
 		this.color = color;
-		this.confirm = false;
 	}
 
-	setColor(color : string) {
-		this.color = color;
-	}
+	countMonthFrom(birthdayDate : Date) : number {
+		const newEventDate : Date = new Date(this.data);
+    
+		const countOfYears : number = newEventDate.getFullYear() - birthdayDate.getFullYear();
+		const countMonths : number = newEventDate.getMonth() - birthdayDate.getMonth() + countOfYears * 12;
 
-	setName(title : string) {
-		this.title = title;
-	}
-
-	setData(data : string) {
-		this.data = data;
-	}
-
-	setConfirm(state : boolean) {
-		this.confirm = state;
-	}
-
-	isEqual(data : Event) {
-		if (this.data === data.data)
-			return true;
-		return false;
+		return countMonths;
 	}
 }

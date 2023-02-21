@@ -1,4 +1,6 @@
 @import 'libs/bootstrap-reboot.min';
+@import '_variables';
+@import '_mixins';
 
 .container {
 	width: 1240px;
@@ -9,7 +11,7 @@
 
 header {
 	height: 50px;
-	background-color: rgb(216, 255, 203);
+	background-color: $active_color;
 }
 
 h2 {
@@ -22,17 +24,6 @@ p {
 	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
-}
-
-button {
-	font-family: 'Marmelad', sans-serif;
-	color: rgb(4, 14, 0);
-	background-color: #ffffff;
-	font-size: 25px;
-	border: none;
-	&:focus {
-		outline: none;
-	}
 }
 
 .start_screen {
@@ -51,75 +42,46 @@ button {
 		margin-bottom: 60px;
 		.form_birthday {
 			.input_birthday {
-				padding: 5px;
-				height: 33px;
-				font-size: 14px;
-				border: 1px solid #000000;
-				border-radius: 11px;
-				border-color: #bdbdbd;
-				transition: 1s all;
-				&:focus {
-					outline: 0;
-				}
+				@include inputs;
 			}
 		}
 	}
 	.button_start {
-		display: block;
-		margin: 0 auto;
-		width: 400px;
-		height: 100px;
-		border-radius: 30px;
-		background-color: #dafade;
+		@include btn;
+		@include btn_start;
+		background-color: $active_color;
 		transition: all 0.5s;
 		&:hover {
-			background-color: #b3ebbb;
-			letter-spacing: 0.045em;
+			@include btn_stard_and_add_hover;
 		}
 	}
 	.button_start_confirmed {
-		display: block;
-		margin: 0 auto;
-		width: 400px;
-		height: 100px;
-		border-radius: 30px;
-		background-color: #b3ebbb;
-		letter-spacing: 0.045em;
+		@include btn;
+		@include btn_start;
+		background-color: $nonactive_color;
+		letter-spacing: 0.015em;
 	}
 }
 
-.achievements {
+.events {
 	.cards__wrapper {
 		display: grid;
 		grid-template-columns: repeat(3, 400px);
 		gap: 20px;
 		grid-auto-rows: 200px;
 		.card {
-			transition: 1s all;
-			width: 400px;
-			height: 200px;
-			background: #ececec;
-			border-radius: 15px;
-			box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
+			@include card;
+			background: $card_active_color;
+			border: $card_border;
 			.form__wrapper {
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				.form_title {
 					.input_title {
-						padding: 5px;
-						font-size: 14px;
 						width: 360px;
-						height: 33px;
-						margin-top: 25px;
-						border: 1px solid #000000;
-						border-radius: 11px;
-						border-color: #bdbdbd;
-						transition: 1s all;
-						background: #ffffff;
-						&:focus {
-							outline: 0;
-						}
+						margin-top: 20px;
+						@include inputs;
 					}
 				}
 				.color_and_month_wrapper {
@@ -132,30 +94,19 @@ button {
 							height: 35px;
 							margin: 20px 15px 30px 15px;
 							border-width: 0;
-							background-color:#ececec;
 							border-radius: 6px;
-							border-color: #bdbdbd;
+							border-color: $input_border_color;
 							cursor: pointer;
 							&:focus {
-								outline: 0;
+								outline: none;
 							}
 						}
 					}
 					.form_month{	
 						.input_month {
-							padding: 5px;
-							font-size: 14px;
 							width: 156px;
-							height: 33px;
 							margin: 20px 15px 30px 15px;
-							border: 1px solid #000000;
-							border-radius: 11px;
-							border-color: #bdbdbd;
-							transition: 1s all;
-							background: #ffffff;
-							&:focus {
-								outline: 0;
-							}
+							@include inputs;
 						}
 					}
 				}
@@ -165,42 +116,33 @@ button {
 				justify-content: center;
 				align-items: space-around;
 				.button_delete_card {
-					width: 120px;
-					height: 33px;
-					margin: 0 10px;
-					font-size: 14px;
-					border-radius: 11px;
-					background-color: #ffd4d4;
-					transition: 1s all;
+					@include btn;
+					@include btns_on_card;
+					background-color: $button_red;
 					&:hover {
-						background-color: #ffbfbf;
-						letter-spacing: 0.015em;
+						background-color: $button_red_hover;
 					}
 				}
 				.button_save_card {
-					width: 120px;
-					height: 33px;
-					margin: 0 10px;
-					font-size: 14px;
-					border-radius: 11px;
-					background-color: #c2f7c0;
-					transition: 1s all;
+					@include btn;
+					@include btns_on_card;
+					background-color: $active_color;
 					&:hover {
-						background-color: #acf4a9;
-						letter-spacing: 0.015em;
+						background-color: $button_green_hover;
 					}
 				}
 			}
 		}
+		.card_confirmed {
+			background: $nonactive_color;
+		}
 		.button_add_new_card {
-			width: 400px;
-			height: 200px;
-			background:#ececec;
-			border-radius: 15px;
-			box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
+			@include btn;
+			@include card;
+			background: $active_color;
 			transition: 1s all;
 			&:hover {
-				background:#dafade;
+				@include btn_stard_and_add_hover;
 			}
 		}
 	}
@@ -212,7 +154,6 @@ button {
 	padding: 0;
 	margin-top: 40px;
 	width: 1100px;
-	background-color:rgb(255, 255, 255);
 	.result__wrapper {
 		margin-bottom: 50px;
 		display: flex;
@@ -226,25 +167,37 @@ button {
 			row-gap: 5px;
 			width: 500px;
 			div {
-				width: 15px;
-				height: 15px;
-				background: #e2e2e2;
-				border: 0.3px solid #000000;
-				border-radius: 10px;
+				@include cells;
+				background: $nonactive_color;
 			}
 			.past {
+				@include cells;
+				background: $card_active_color;
+			}
+			.age {
 				width: 15px;
 				height: 15px;
-				background: #ffffff;
-				border: 0.3px solid #000000;
-				border-radius: 10px;
+				margin: 0;
+				padding: 0;
+				font-size: 10px;
+				text-align: center;
+			}
+			.months_names {
+				width: 15px;
+				height: 40px;
+				margin: 0;
+				padding: 0;
+				font-size: 10px;
+				text-align: center;
+				text-orientation: upright;
+				writing-mode: vertical-lr; 
 			}
 		}
 		.designation__wrapper {
 			padding: 10px;
 			display: block;
 			width: 485px;
-			height: 735px;
+			height: 755px;
 			border: 0.3px solid #000000;
 			.designation {
 				margin: 0 0 5px 0;
@@ -253,11 +206,7 @@ button {
 				align-items: flex-start;
 				.designation_color {
 					margin: 0 10px 0 0;
-					width: 15px;
-					height: 15px;
-					background: #FFFFFF;
-					border: 0.3px solid #000000;
-					border-radius: 10px;
+					@include cells;
 				}
 				.designation_description {
 					margin: 0;
@@ -269,32 +218,34 @@ button {
 }
 
 footer {
+	padding-top: 40px;
 	height: 140px;
-	background-color: rgb(216, 255, 203);
+	background-color: $active_color;
+	.footer__wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+			padding-bottom: 5px;
+            margin: 0 15px;
+			fill: grey;
+            &:hover {
+                svg {
+                    path {
+                        transition: 1s all;
+                        fill: rgb(0, 0, 0);
+                    }
+                }
+            }
+        }
+        span {
+            margin: 0;
+			color: grey;
+        }
+    }
 }
 
 .invisible {
 	display: none;
-}
-
-.age {
-	width: 15px;
-	height: 15px;
-	background: #FFFFFF;
-	margin: 0;
-	padding: 0;
-	font-size: 10px;
-	text-align: center;
-}
-
-.months_names {
-	width: 15px;
-	height: 40px;
-	background: #FFFFFF;
-	margin: 0;
-	padding: 0;
-	font-size: 10px;
-	text-align: center;
-	text-orientation: upright;
-	writing-mode: vertical-lr; 
 }

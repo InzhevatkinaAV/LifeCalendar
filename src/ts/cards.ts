@@ -1,76 +1,91 @@
-import { Event } from "./event.js";
-import { addEventOnCalendar, deleteEventFromCalendar } from "./calendar.js";
+import { Event } from './event.js';
+import { addEventOnCalendar, deleteEventFromCalendar } from './calendar.js';
+import { showAwareFor } from "./help_functions.js";
 
-const card = document.querySelector(".card");
-const buttonAddNewCard = document.querySelector(".button_add_new_card") as HTMLButtonElement;
+const firstCard = document.querySelector('.card') as HTMLElement;
+const buttonAddNewCard = document.querySelector('.button_add_new_card') as HTMLButtonElement;
 
-let eventsList = new Map<string, Event>();
+const eventsList = new Map<string, Event>();
 
-export function editFirstCard(birthday : string) {
-	let firstCardInputDate = document.querySelector(".input_month") as HTMLInputElement;
+export function prepareFirstCard(birthday : string) {
+	const firstCardInputDate = document.querySelector('.input_month') as HTMLInputElement;
+	setMinMaxInputDateOn(firstCardInputDate, birthday)
+}
 
-	let maxDate = new Date(new Date(birthday).getFullYear() + 74, new Date(birthday).getMonth() - 1);
+function setMinMaxInputDateOn(firstCardInputDate : HTMLInputElement, birthday : string) {
+	const maxDate = new Date(new Date(birthday).getFullYear() + 76, new Date(birthday).getMonth() - 1);
 
 	let monthMax = String(maxDate.getMonth() + 1);
-	monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
+	monthMax = monthMax.length === 1 ? '0' + monthMax : monthMax;
 
-	firstCardInputDate.max = String(maxDate.getFullYear()) + "-" + monthMax;
+	firstCardInputDate.max = String(maxDate.getFullYear()) + '-' + monthMax;
 	firstCardInputDate.min = birthday;
 }
 
 export function addNewEmptyCard(birthday : string) {
-    let newCard = card.cloneNode(true) as HTMLElement;
+    const newCard = firstCard.cloneNode(true) as HTMLElement;
 
-	newCard.classList.remove("card_confirmed");
-	newCard.style.background = "#ececec";
+	newCard.classList.remove('card_confirmed');
+	newCard.style.background = '$card_active_color';
 
-	if (!newCard.querySelector(".button_save_card")) {
-		let btnWrapper = newCard.querySelector(".button_save-delete__wrapper") as HTMLElement;
-		let btnSave = document.createElement("button");
-		btnSave.classList.add("button_save_card");
-		btnSave.innerHTML = "Запомнить";
-		btnWrapper.prepend(btnSave);
-	}
+	if (!newCard.querySelector('.button_save_card'))
+		addSaveBtnOn(newCard);
 
-	let newCardInputTitle = newCard.querySelector(".input_title") as HTMLInputElement;
-	newCardInputTitle.disabled = false;
-	newCardInputTitle.value = "";
-	newCardInputTitle.placeholder = "Еще одно воспоминание...или план?";
-
-	let newCardInputDate = newCard.querySelector(".input_month") as HTMLInputElement;
-	newCardInputDate.disabled = false;
-	newCardInputDate.value = null;
-
-	let monthMax = String(new Date(birthday).getMonth() + 1);
-	monthMax = monthMax.length === 1 ? "0" + monthMax : monthMax;
-	newCardInputDate.max = String(new Date(birthday).getFullYear() + 74) + "-" + monthMax;
-	newCardInputDate.min = birthday;
-
-	let newCardInputColor = newCard.querySelector(".input_color") as HTMLInputElement;
-	newCardInputColor.disabled = false;
-	newCardInputColor.style.cursor = "pointer";
-	newCardInputColor.value = "#e66465";
+	setInputTitleOn(newCard);
+	setInputDateOn(newCard, birthday);
+	setInputColorOn(newCard);
 
 	buttonAddNewCard.before(newCard);
 
 	const cards = document.querySelectorAll('.card');
-	let countAllCards = cards.length;
-	console.log(countAllCards);
+	const countOfCards = cards.length;
 
-	if (countAllCards >= 33) buttonAddNewCard.style.display = 'none';
+	if (countOfCards >= 33) 
+		buttonAddNewCard.style.display = 'none';
 }
 
-document.addEventListener("click", function(e){
-    let element = isElement(".button_delete_card");
+function addSaveBtnOn(newCard : HTMLElement) {
+	const btnWrapper = newCard.querySelector('.button_save-delete__wrapper') as HTMLElement;
+	const btnSave = document.createElement('button');
+	btnSave.classList.add('button_save_card');
+	btnSave.innerHTML = 'Запомнить';
+	btnWrapper.prepend(btnSave);
+}
+
+function setInputTitleOn(newCard : HTMLElement) {
+	const newCardInputTitle = newCard.querySelector('.input_title') as HTMLInputElement;
+	newCardInputTitle.disabled = false;
+	newCardInputTitle.value = '';
+	newCardInputTitle.placeholder = 'Еще одно воспоминание...или план?';
+}
+
+function setInputDateOn(newCard : HTMLElement, birthday : string) {
+	const newCardInputDate = newCard.querySelector('.input_month') as HTMLInputElement;
+	newCardInputDate.disabled = false;
+	newCardInputDate.value = null;
+	setMinMaxInputDateOn(newCardInputDate, birthday);
+}
+
+function setInputColorOn(newCard : HTMLElement) {
+	let newCardInputColor = newCard.querySelector('.input_color') as HTMLInputElement;
+	newCardInputColor.disabled = false;
+	newCardInputColor.style.cursor = 'pointer';
+	newCardInputColor.value = '#29a725';
+
+	newCardInputColor.style.backgroundColor = '#FFFFFF';
+}
+
+document.addEventListener('click', function(e){
+    let element = isElement('.button_delete_card');
     if (element) {
-        deleteCard(element.closest(".card"));
+        deleteCard(element.closest('.card'));
 		element = null;
 		return;
     }
 
-	element = isElement(".button_save_card");
+	element = isElement('.button_save_card');
 	if (element) {
-		saveCard(element.closest(".card"));
+		saveCard(element.closest('.card'));
 		element = null;
 		return;
 	}
@@ -79,16 +94,14 @@ document.addEventListener("click", function(e){
 function isElement(className : string) {
     let element = (event.target as HTMLElement).closest(className);
 	
-	if (!element) {
-		return;
-	}
+	if (!element) return;
 	
 	return element;
 }
 
 function deleteCard(card : HTMLElement) {
-	if (card.classList.contains("card_confirmed")) {
-		let inputData = card.querySelector(".input_month") as HTMLInputElement;
+	if (card.classList.contains('card_confirmed')) {
+		const inputData = card.querySelector('.input_month') as HTMLInputElement;
 		deleteEventFromCalendar(eventsList.get(inputData.value));
 		eventsList.delete(inputData.value);
 	}
@@ -98,41 +111,39 @@ function deleteCard(card : HTMLElement) {
 }
 
 function saveCard(card : HTMLElement) {
-	let inputData = card.querySelector(".input_month") as HTMLInputElement;
-	let inputTitle = card.querySelector(".input_title") as HTMLInputElement;
-	let inputColor = card.querySelector(".input_color") as HTMLInputElement;
-	let btnSave = card.querySelector(".button_save_card") as HTMLButtonElement;
+	const inputData = card.querySelector('.input_month') as HTMLInputElement;
+	const inputTitle = card.querySelector('.input_title') as HTMLInputElement;
+	const inputColor = card.querySelector('.input_color') as HTMLInputElement;
 
 	if (inputTitle.value && inputData.value && inputData.value >= inputData.min && inputData.value <= inputData.max) {
-		let newEvent = new Event(inputTitle.value, inputData.value, inputColor.value);
+		const newEvent = new Event(inputTitle.value, inputData.value, inputColor.value);
 
 		if (!eventsList.has(newEvent.data)) {
 			eventsList.set(newEvent.data, newEvent);
-			card.classList.add("card_confirmed");
-			card.style.background =  "#ffffff";
-			inputData.disabled = true;
-			inputTitle.disabled = true;
-			inputColor.disabled = true;
-			inputColor.style.cursor = "default";
-			btnSave.remove();
 
-			//Добавить на календарь событие
+			fixCard(card, inputData, inputTitle, inputColor);
+
 			addEventOnCalendar(newEvent);
 
-		} else {
-			alert("Эта дата уже занята");
-		}
+		} else alert('Эта дата уже занята');
+		
 	} else {
-		if (!inputTitle.value) {
-			inputTitle.style.borderColor = "#ff0000";
-			inputTitle.style.background = "#ffe5e5";
-			setTimeout(() => {inputTitle.style.borderColor = "#bdbdbd"; inputTitle.style.background = "#ffffff"}, 1000);
-		}
-		if (!inputData.value || !(inputData.value >= inputData.min && inputData.value <= inputData.max)) {
-			inputData.style.borderColor = "#ff0000";
-			inputData.style.background = "#ffe5e5";
-			setTimeout(() => {inputData.style.borderColor = "#bdbdbd"; inputData.style.background = "#ffffff"}, 1000);
-		}
+		if (!inputTitle.value)
+			showAwareFor(inputTitle);
+		if (!inputData.value || !(inputData.value >= inputData.min && inputData.value <= inputData.max))
+			showAwareFor(inputData);
 	}
 }
 
+function fixCard(card : HTMLElement, inputData : HTMLInputElement, inputTitle : HTMLInputElement, inputColor : HTMLInputElement) {
+	card.classList.add('card_confirmed');
+
+	inputData.disabled = true;
+	inputTitle.disabled = true;
+	inputColor.disabled = true;
+	inputColor.style.backgroundColor = '#EEEEEE';
+	inputColor.style.cursor = 'default';
+
+	const btnSave = card.querySelector('.button_save_card') as HTMLButtonElement;
+	btnSave.remove();
+}
