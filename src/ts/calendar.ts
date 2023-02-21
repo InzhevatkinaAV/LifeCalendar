@@ -1,7 +1,7 @@
 import { Event } from "./event.js";
 
 const calendarMonth = document.querySelector(".calendar");
-let month = calendarMonth.children;
+let cells = calendarMonth.children;
 
 let birthdayDate : Date;
 
@@ -35,13 +35,13 @@ function addBaseCells() {
 function addAgeOnTheLeft() {
 	let count = 0;
 
-	for (let i = 0; i < month.length; i++) {
+	for (let i = 0; i < cells.length; i++) {
 		if (i % (24 + 1) == 0) {
 			const age = document.createElement('p');
 			age.classList.add('age');
 			age.innerHTML = `${count}`;
 			count += 2;
-			month[i].before(age);
+			cells[i].before(age);
 		}
 	}
 }
@@ -66,7 +66,7 @@ function addMonthOnTheTop(birthday : string) {
 		const name = document.createElement('p');
 		name.classList.add('months_names');
 		name.innerHTML = `${months[i]}`;
-		month[i].before(name);
+		cells[i].before(name);
 	}
 }
 
@@ -82,7 +82,7 @@ function addPastOnCalendar(birthday : string, currentDate : Date) {
 		if (pos % 25 === 0) 
 			pos++;
 
-		month[pos].classList.add('past');
+			cells[pos].classList.add('past');
 
 		pos++;
 	}
@@ -112,7 +112,7 @@ export function addEventOnCalendar(newEvent : Event) {
 	if (pos % 25 === 0) 
 		pos++;
 	
-	month[pos].classList.add(`d${countMonths.toString()}`);
+	cells[pos].classList.add(`d${countMonths.toString()}`);
 
 	const eventOnCalendar = document.querySelector(`.d${countMonths.toString()}`) as HTMLElement;
 	eventOnCalendar.style.background = newEvent.color;

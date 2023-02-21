@@ -1,5 +1,5 @@
 @mixin btn {
-    font-family: 'Marmelad', sans-serif;
+	font-family: 'Marmelad', sans-serif;
 	font-size: 25px;
 	border: none;
 	&:focus {
@@ -8,55 +8,55 @@
 }
 
 @mixin btns_on_card {
-    width: 120px;
-    height: 33px;
-    margin: 0 10px;
-    font-size: 14px;
-    border-radius: 11px;
-    transition: 1s all;
-    &:hover {
-        letter-spacing: 0.015em;
+	width: 120px;
+	height: 33px;
+	margin: 0 10px;
+	font-size: 14px;
+	border-radius: 11px;
+	transition: 1s all;
+	&:hover {
+		letter-spacing: 0.015em;
 		color: rgb(4, 14, 0);
-    }
+	}
 }
 
 @mixin btn_start {
-    display: block;
-    margin: 0 auto;
-    width: 400px;
-    height: 100px;
-    border-radius: 30px;
+	display: block;
+	margin: 0 auto;
+	width: 400px;
+	height: 100px;
+	border-radius: 30px;
 }
 
 @mixin btn_stard_and_add_hover {
-    background-color: $button_green_hover;
-    letter-spacing: 0.015em;
-    color: rgb(4, 14, 0);
+	background-color: $button_green_hover;
+	letter-spacing: 0.015em;
+	color: rgb(4, 14, 0);
 }
 
 @mixin inputs {
-    padding: 5px;
-    height: 33px;
-    font-size: 14px;
-    border: $input_border;
-    border-radius: 11px;
-    transition: 1s all;
-    background-color: $input_background_color;
-    &:focus {
-        outline: 0;
-    }
+	padding: 5px;
+	height: 33px;
+	font-size: 14px;
+	border: $input_border;
+	border-radius: 11px;
+	transition: 1s all;
+	background-color: $input_background_color;
+	&:focus {
+		outline: 0;
+	}
 }
 
 @mixin card {
-    width: 400px;
-    height: 200px;
-    border-radius: 15px;
-    box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
+	width: 400px;
+	height: 200px;
+	border-radius: 15px;
+	box-shadow: 2px 2px 5px rgb(0 0 0 / 10%);
 }
 
 @mixin cells {
-    width: 15px;
-    height: 15px;
-    border: 0.3px solid #000000;
-    border-radius: 10px;
+	width: 15px;
+	height: 15px;
+	border: 0.3px solid #000000;
+	border-radius: 10px;
 }

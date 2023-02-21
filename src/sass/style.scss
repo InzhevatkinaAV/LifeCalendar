@@ -222,28 +222,28 @@ footer {
 	height: 140px;
 	background-color: $active_color;
 	.footer__wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        a {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		a {
 			padding-bottom: 5px;
-            margin: 0 15px;
+			margin: 0 15px;
 			fill: grey;
-            &:hover {
-                svg {
-                    path {
-                        transition: 1s all;
-                        fill: rgb(0, 0, 0);
-                    }
-                }
-            }
-        }
-        span {
-            margin: 0;
+			&:hover {
+				svg {
+					path {
+						transition: 1s all;
+						fill: rgb(0, 0, 0);
+					}
+				}
+			}
+		}
+		span {
+			margin: 0;
 			color: grey;
-        }
-    }
+		}
+	}
 }
 
 .invisible {

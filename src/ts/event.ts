@@ -11,7 +11,7 @@ export class Event {
 
 	countMonthFrom(birthdayDate : Date) : number {
 		const newEventDate : Date = new Date(this.data);
-    
+	
 		const countOfYears : number = newEventDate.getFullYear() - birthdayDate.getFullYear();
 		const countMonths : number = newEventDate.getMonth() - birthdayDate.getMonth() + countOfYears * 12;
 

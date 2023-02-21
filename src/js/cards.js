@@ -8,12 +8,12 @@ export function prepareFirstCard(birthday) {
     const firstCardInputDate = document.querySelector('.input_month');
     setMinMaxInputDateOn(firstCardInputDate, birthday);
 }
-function setMinMaxInputDateOn(firstCardInputDate, birthday) {
+function setMinMaxInputDateOn(cardInputDate, birthday) {
     const maxDate = new Date(new Date(birthday).getFullYear() + 76, new Date(birthday).getMonth() - 1);
     let monthMax = String(maxDate.getMonth() + 1);
     monthMax = monthMax.length === 1 ? '0' + monthMax : monthMax;
-    firstCardInputDate.max = String(maxDate.getFullYear()) + '-' + monthMax;
-    firstCardInputDate.min = birthday;
+    cardInputDate.max = String(maxDate.getFullYear()) + '-' + monthMax;
+    cardInputDate.min = birthday;
 }
 export function addNewEmptyCard(birthday) {
     const newCard = firstCard.cloneNode(true);
@@ -41,7 +41,7 @@ function setInputTitleOn(newCard) {
     const newCardInputTitle = newCard.querySelector('.input_title');
     newCardInputTitle.disabled = false;
     newCardInputTitle.value = '';
-    newCardInputTitle.placeholder = 'Еще одно воспоминание...или план?';
+    newCardInputTitle.placeholder = 'Еще одно воспоминание, достижение...или план?';
 }
 function setInputDateOn(newCard, birthday) {
     const newCardInputDate = newCard.querySelector('.input_month');
@@ -96,8 +96,10 @@ function saveCard(card) {
             fixCard(card, inputData, inputTitle, inputColor);
             addEventOnCalendar(newEvent);
         }
-        else
-            alert('Эта дата уже занята');
+        else {
+            let title = eventsList.get(newEvent.data).title;
+            alert(`Дата уже занята событием \"${title} \". \nНо Вы можете выбрать ближайший свободный месяц!`);
+        }
     }
     else {
         if (!inputTitle.value)

@@ -43,7 +43,7 @@ function setBirthdayDateRange() {
 	let monthMaxMin = String(currentDate.getMonth() + 1);
 	monthMaxMin = monthMaxMin.length === 1 ? "0" + monthMaxMin : monthMaxMin;
 	inputBirthday.max = String(currentDate.getFullYear() - 5) + "-" + monthMaxMin;
-	inputBirthday.min = String(currentDate.getFullYear() - 76) + "-" + monthMaxMin; //74
+	inputBirthday.min = String(currentDate.getFullYear() - 76) + "-" + monthMaxMin;
 }
 
 function fixBirthdayAndBtnStart() {

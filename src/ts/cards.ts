@@ -12,18 +12,18 @@ export function prepareFirstCard(birthday : string) {
 	setMinMaxInputDateOn(firstCardInputDate, birthday)
 }
 
-function setMinMaxInputDateOn(firstCardInputDate : HTMLInputElement, birthday : string) {
+function setMinMaxInputDateOn(cardInputDate : HTMLInputElement, birthday : string) {
 	const maxDate = new Date(new Date(birthday).getFullYear() + 76, new Date(birthday).getMonth() - 1);
 
 	let monthMax = String(maxDate.getMonth() + 1);
 	monthMax = monthMax.length === 1 ? '0' + monthMax : monthMax;
 
-	firstCardInputDate.max = String(maxDate.getFullYear()) + '-' + monthMax;
-	firstCardInputDate.min = birthday;
+	cardInputDate.max = String(maxDate.getFullYear()) + '-' + monthMax;
+	cardInputDate.min = birthday;
 }
 
 export function addNewEmptyCard(birthday : string) {
-    const newCard = firstCard.cloneNode(true) as HTMLElement;
+	const newCard = firstCard.cloneNode(true) as HTMLElement;
 
 	newCard.classList.remove('card_confirmed');
 	newCard.style.background = '$card_active_color';
@@ -56,7 +56,7 @@ function setInputTitleOn(newCard : HTMLElement) {
 	const newCardInputTitle = newCard.querySelector('.input_title') as HTMLInputElement;
 	newCardInputTitle.disabled = false;
 	newCardInputTitle.value = '';
-	newCardInputTitle.placeholder = 'Еще одно воспоминание...или план?';
+	newCardInputTitle.placeholder = 'Еще одно воспоминание, достижение...или план?';
 }
 
 function setInputDateOn(newCard : HTMLElement, birthday : string) {
@@ -76,12 +76,12 @@ function setInputColorOn(newCard : HTMLElement) {
 }
 
 document.addEventListener('click', function(e){
-    let element = isElement('.button_delete_card');
-    if (element) {
-        deleteCard(element.closest('.card'));
+	let element = isElement('.button_delete_card');
+	if (element) {
+		deleteCard(element.closest('.card'));
 		element = null;
 		return;
-    }
+	}
 
 	element = isElement('.button_save_card');
 	if (element) {
@@ -92,7 +92,7 @@ document.addEventListener('click', function(e){
 })
 
 function isElement(className : string) {
-    let element = (event.target as HTMLElement).closest(className);
+	let element = (event.target as HTMLElement).closest(className);
 	
 	if (!element) return;
 	
@@ -105,7 +105,7 @@ function deleteCard(card : HTMLElement) {
 		deleteEventFromCalendar(eventsList.get(inputData.value));
 		eventsList.delete(inputData.value);
 	}
-    card.remove();
+	card.remove();
 
 	buttonAddNewCard.style.display = '';
 }
@@ -125,7 +125,10 @@ function saveCard(card : HTMLElement) {
 
 			addEventOnCalendar(newEvent);
 
-		} else alert('Эта дата уже занята');
+		} else {
+			let title = eventsList.get(newEvent.data).title;
+			alert(`Дата уже занята событием \"${title} \". \nНо Вы можете выбрать ближайший свободный месяц!`);
+		}
 		
 	} else {
 		if (!inputTitle.value)
