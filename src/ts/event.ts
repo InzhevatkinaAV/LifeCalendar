@@ -9,11 +9,11 @@ export class Event {
 		this.color = color;
 	}
 
-	countMonthFrom(birthdayDate : Date) : number {
+	countMonthFrom(date : Date) : number {
 		const newEventDate : Date = new Date(this.data);
 	
-		const countOfYears : number = newEventDate.getFullYear() - birthdayDate.getFullYear();
-		const countMonths : number = newEventDate.getMonth() - birthdayDate.getMonth() + countOfYears * 12;
+		const countOfYears : number = newEventDate.getFullYear() - date.getFullYear();
+		const countMonths : number = newEventDate.getMonth() - date.getMonth() + countOfYears * 12;
 
 		return countMonths;
 	}
