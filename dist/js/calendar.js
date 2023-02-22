@@ -114,9 +114,9 @@ export function deleteEventFromCalendar(newEvent) {
     else
         eventOnCalendar.style.background = '#EEEEEE';
     eventOnCalendar.classList.remove(`d${countMonths.toString()}`);
-    deleteEventFromDescription(countMonths.toString());
+    deleteEventFromDesignations(countMonths.toString());
 }
-function deleteEventFromDescription(countMonths) {
+function deleteEventFromDesignations(countMonths) {
     const designationWrapper = document.querySelector('.designation__wrapper');
     const oldEvent = designationWrapper.querySelector(`.d${countMonths}`);
     oldEvent.remove();

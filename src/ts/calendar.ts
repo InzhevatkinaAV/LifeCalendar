@@ -151,10 +151,10 @@ export function deleteEventFromCalendar(newEvent : Event) {
 
 	eventOnCalendar.classList.remove(`d${countMonths.toString()}`);
 
-	deleteEventFromDescription(countMonths.toString());
+	deleteEventFromDesignations(countMonths.toString());
 }
 
-function deleteEventFromDescription(countMonths : string) {
+function deleteEventFromDesignations(countMonths : string) {
 	const designationWrapper = document.querySelector('.designation__wrapper');
 	const oldEvent = designationWrapper.querySelector(`.d${countMonths}`);
 
