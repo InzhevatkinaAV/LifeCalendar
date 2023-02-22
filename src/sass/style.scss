@@ -9,21 +9,26 @@
 	min-height: calc(100vh - 50px - 140px);
 }
 
+body {
+	background: url('../img/start_page.jpg') no-repeat 100%/cover;
+	background-attachment: fixed;
+}
+
 header {
 	height: 50px;
-	background-color: $active_color;
+	background: url('../img/header.png') no-repeat center;
 }
 
 h2 {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Marmelad', sans-serif;
 	font-weight: 500;
 	font-size: 20px;
 }
 
 p {
-	font-size: 14px;
 	font-family: 'Roboto', sans-serif;
 	font-weight: 400;
+	font-size: 14px;
 }
 
 .start_screen {
@@ -49,15 +54,18 @@ p {
 	.button_start {
 		@include btn;
 		@include btn_start;
-		background-color: $active_color;
+		background-color: $button_green;
+		margin-top: 20px;
 		transition: all 0.5s;
 		&:hover {
-			@include btn_stard_and_add_hover;
+			@include btn_start_and_add_hover;
 		}
 	}
 	.button_start_confirmed {
 		@include btn;
 		@include btn_start;
+		margin-top: 20px;
+		transition: all 0.5s;
 		background-color: $nonactive_color;
 		letter-spacing: 0.015em;
 	}
@@ -95,6 +103,7 @@ p {
 							margin: 20px 15px 30px 15px;
 							border-width: 0;
 							border-radius: 6px;
+							background-color: $input_background_color;
 							border-color: $input_border_color;
 							cursor: pointer;
 							&:focus {
@@ -126,7 +135,7 @@ p {
 				.button_save_card {
 					@include btn;
 					@include btns_on_card;
-					background-color: $active_color;
+					background-color: $button_green;
 					&:hover {
 						background-color: $button_green_hover;
 					}
@@ -139,10 +148,10 @@ p {
 		.button_add_new_card {
 			@include btn;
 			@include card;
-			background: $active_color;
+			background: $button_green;
 			transition: 1s all;
 			&:hover {
-				@include btn_stard_and_add_hover;
+				@include btn_start_and_add_hover;
 			}
 		}
 	}
@@ -155,6 +164,9 @@ p {
 	margin-top: 40px;
 	width: 1100px;
 	.result__wrapper {
+		background: #ffffff;
+		padding: 20px;
+		border: $input_border;
 		margin-bottom: 50px;
 		display: flex;
 		align-items: end;
@@ -218,9 +230,9 @@ p {
 }
 
 footer {
-	padding-top: 40px;
+	padding-top: 60px;
 	height: 140px;
-	background-color: $active_color;
+	background: url('../img/footer.png') no-repeat center;
 	.footer__wrapper {
 		width: 100%;
 		display: flex;
@@ -229,7 +241,6 @@ footer {
 		a {
 			padding-bottom: 5px;
 			margin: 0 15px;
-			fill: grey;
 			&:hover {
 				svg {
 					path {
@@ -241,7 +252,7 @@ footer {
 		}
 		span {
 			margin: 0;
-			color: grey;
+			color: rgb(53, 53, 53);
 		}
 	}
 }

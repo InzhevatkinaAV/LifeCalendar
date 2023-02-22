@@ -1,5 +1,5 @@
-import { Event } from "./event.js";
-const calendarMonth = document.querySelector(".calendar");
+import { Event } from './event.js';
+const calendarMonth = document.querySelector('.calendar');
 let cells = calendarMonth.children;
 let birthdayDate;
 const monthsNames = {
@@ -41,12 +41,12 @@ function addAgeOnTheLeft() {
 function addMonthOnTheTop(birthday) {
     let months = [];
     let startLife = (+(birthday.split('-')[1]) % 12).toString();
-    startLife = startLife.length === 1 ? "0" + startLife : startLife;
+    startLife = startLife.length === 1 ? '0' + startLife : startLife;
     let curMonth = startLife;
     for (let i = 0; i < 12; i++) {
         months.push(monthsNames[curMonth]);
         curMonth = ((Number(curMonth) + 1) % 12).toString();
-        curMonth = curMonth.length === 1 ? "0" + curMonth : curMonth;
+        curMonth = curMonth.length === 1 ? '0' + curMonth : curMonth;
     }
     months = months.concat(months);
     months.unshift('');
@@ -72,10 +72,10 @@ function addPastOnCalendar(birthday, currentDate) {
     addPastAndFutureOnDesignations();
 }
 function addPastAndFutureOnDesignations() {
-    const pastPeriod = new Event("Хорошо знакомое прошлое", new Date().toString(), "#FFFFFF");
-    addEventOnDesignations(pastPeriod, "past_designations");
-    const futurePeriod = new Event("Еще не открытое будущее", new Date().toString(), " #EEEEEE");
-    addEventOnDesignations(futurePeriod, "future_designations");
+    const pastPeriod = new Event('Хорошо знакомое прошлое', new Date().toString(), '#FFFFFF');
+    addEventOnDesignations(pastPeriod, 'past_designations');
+    const futurePeriod = new Event('Еще не открытое будущее', new Date().toString(), ' #EEEEEE');
+    addEventOnDesignations(futurePeriod, 'future_designations');
 }
 export function addEventOnCalendar(newEvent) {
     const countMonths = newEvent.countMonthFrom(birthdayDate);
@@ -110,9 +110,9 @@ export function deleteEventFromCalendar(newEvent) {
     const countMonths = newEvent.countMonthFrom(birthdayDate);
     const eventOnCalendar = document.querySelector(`.d${countMonths.toString()}`);
     if (eventOnCalendar.classList.contains('past'))
-        eventOnCalendar.style.background = "#FFFFFF";
+        eventOnCalendar.style.background = '#FFFFFF';
     else
-        eventOnCalendar.style.background = "#EEEEEE";
+        eventOnCalendar.style.background = '#EEEEEE';
     eventOnCalendar.classList.remove(`d${countMonths.toString()}`);
     deleteEventFromDescription(countMonths.toString());
 }

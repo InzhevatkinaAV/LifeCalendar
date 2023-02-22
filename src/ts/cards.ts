@@ -1,6 +1,6 @@
 import { Event } from './event.js';
 import { addEventOnCalendar, deleteEventFromCalendar } from './calendar.js';
-import { showAwareFor } from "./help_functions.js";
+import { showAwareFor } from './help_functions.js';
 
 const firstCard = document.querySelector('.card') as HTMLElement;
 const buttonAddNewCard = document.querySelector('.button_add_new_card') as HTMLButtonElement;
@@ -127,7 +127,7 @@ function saveCard(card : HTMLElement) {
 
 		} else {
 			let title = eventsList.get(newEvent.data).title;
-			alert(`Дата уже занята событием \"${title} \". \nНо Вы можете выбрать ближайший свободный месяц!`);
+			alert(`Дата уже занята событием \'${title} \'. \nВы можете выбрать ближайший свободный месяц!`);
 		}
 		
 	} else {
