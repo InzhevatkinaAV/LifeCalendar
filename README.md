@@ -18,7 +18,7 @@
 - выполнить команду "gulp".
 
 ## Preview
-Пример результата, если бы Вы были Гарри Поттером:
+Пример результата, если бы Вы были Гарри Поттером и составляли календарь в феврале 2023 года:
 
 
 ![Preview](https://github.com/InzhevatkinaAV/LifeCalendar/blob/main/example.bmp)
