@@ -85,12 +85,32 @@
     }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 530px) {
     .container {
         width: 485px;
     }
     header {
         background: none; 
+    }
+    .start_screen {
+        .about__wrapper {
+            width: 300px;
+            margin-left: 10px;
+            h1 {
+                font-size: 30px;
+            }
+            p {
+                font-size: 16px;
+            }
+        }
+        .birthday__wrapper {
+            margin-left: 10px;
+        }
+    }
+    .events {
+        h2, p {
+            margin-left: 10px;
+        }
     }
     footer {
         background: none;
