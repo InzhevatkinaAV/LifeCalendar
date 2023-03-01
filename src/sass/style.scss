@@ -4,8 +4,8 @@
 
 .container {
 	width: 1240px;
-	margin: 0 auto;
 	padding-top: 25px;
+	margin: 0 auto;
 	min-height: calc(100vh - 50px - 140px);
 }
 
@@ -15,6 +15,7 @@ body {
 }
 
 header {
+	width: 100wh;
 	height: 50px;
 	background: url('../img/header.png') no-repeat center;
 }
@@ -232,9 +233,11 @@ p {
 footer {
 	padding-top: 60px;
 	height: 140px;
+	width: 100wh;
 	background: url('../img/footer.png') no-repeat center;
 	.footer__wrapper {
-		width: 100%;
+		width: calc(100% - 25px);
+		margin-left: 25px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -260,3 +263,5 @@ footer {
 .invisible {
 	display: none;
 }
+
+@import '_media';
