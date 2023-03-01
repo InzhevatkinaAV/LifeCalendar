@@ -37,6 +37,9 @@
         .button_start {
             margin-top: 50px;
         }
+        .button_start_confirmed {
+            margin-top: 50px;
+        }
     }
     .events {
         .main__wrapper {
@@ -52,9 +55,6 @@
 
 @media (max-width: 620px) {
     .container {
-        width: 520px;
-    }
-    header {
         width: 520px;
     }
     .start_screen {
@@ -77,12 +77,23 @@
         .button_start_confirmed {
             width: 300px;
             height: 100px;
+            margin-bottom: 20px;
         }
     }
     .result {
         width: 520px;
     }
+}
+
+@media (max-width: 520px) {
+    .container {
+        width: 485px;
+    }
+    header {
+        background: none; 
+    }
     footer {
-        width: 520px;
+        background: none;
+        width: 480px;
     }
 }
